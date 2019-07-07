@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giphy Search</title>
+    <!-- Reset User Agent Defaults -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Load Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Load custom CSS for overrides as needed-->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Default Navbar \ Title Bar -->
+    <header class="mb-3">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+                <div class="row w-100">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <span class="navbar-brand  h1">GIPHY</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Container Contain in Rows -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 mb-3">
+                <div class="card">
+                    <h5 class="card-header">Search Giphy using the Below Buttons:</h5>
+                    <div class="card-body">
+                        <div id="giphyButtons">
+                            <!-- Insert the Buttons -->
+                        </div>
+                        <form name="giphyForm">
+                            <div class="form-group">
+                                <label for="giphySearch">Add a Button to Giphy Search:</label>
+                                <input type="text" class="form-control" id="giphySearch" placeholder="don't worry only G or PG related material will be returned">
+                            </div>
+                            <button class="btn btn-primary p-2 m-2" value="Submit" id="createNewButton"><span>Create Button</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="giphyResultsRow">
+            <div class="col-12 col-md-10 offset-md-1 mt-3">
+                <div class="card">
+                    <h5 class="card-header">Giphy Results</h5>
+                    <div class="card-body">
+                        <div id="giphyResults">
+                            <!-- Insert Giphy Gifs based on the Buttons -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loading Jquery SDK from CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Loading Moment SDK from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- Loading Bootstrap required SDK from CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Loading Firebase SDK from CDN -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-database.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</body>
+</html>
+
+
+
+
