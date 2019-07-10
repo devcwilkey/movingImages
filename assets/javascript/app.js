@@ -96,7 +96,7 @@ var giphyApplication = {
         // this code block is used to build the actual Card for the Giphy individual result
         for(i=0; i < tempGiphyArray.length; i++){
             var tempCol = $("<div>")
-            tempCol.attr("class","col-6 col-md-4 mb-2")
+            tempCol.attr("class","col-12 col-md-6 col-xl-4 mb-2")
             var tempCard = $("<div>")
             tempCard.attr("class", "card")
             var tempCardHeader = $("<div>")
