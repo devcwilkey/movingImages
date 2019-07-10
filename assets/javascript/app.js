@@ -67,7 +67,9 @@ var giphyApplication = {
                 imgStill : result.data[i].images["original_still"].url,
                 imgAnimate : result.data[i].images["original"].url,
                 imgRating : result.data[i].rating,
-                imgAspect : result.data[i].images["original_still"].width/result.data[i].images["original_still"].height,
+                imgWidth : result.data[i].images["original_still"].width,
+                imgHeight : result.data[i].images["original_still"].height,
+                imgAspect : result.data[i].images["original_still"].width / result.data[i].images["original_still"].height,
                 imgType : result.data[i].type,
                 imgTitle : imgTitle,
                 imgImportDate : result.data[i].import_datetime,
@@ -96,9 +98,13 @@ var giphyApplication = {
         // this code block is used to build the actual Card for the Giphy individual result
         for(i=0; i < tempGiphyArray.length; i++){
             var tempCol = $("<div>")
-            tempCol.attr("class","col-12 col-md-6 col-xl-4 mb-2")
+            tempCol.attr("class","m-2")
             var tempCard = $("<div>")
-            tempCard.attr("class", "card")
+            if (this.giphyAPISettings.offset === 0){
+                tempCard.attr("class", "card giphyCard")    
+            } else {
+                tempCard.attr("class", "card giphyCard border-success text-white bg-success")
+            }
             var tempCardHeader = $("<div>")
             tempCardHeader.attr("class", "card-header")
             // Since the title varies in length it causes the cards to be very different sizes.
@@ -106,7 +112,7 @@ var giphyApplication = {
             // tempCardTitle.attr("class","card-title")
             // tempCardTitle.text(tempGiphyArray[i].imgTitle)
             var tempCardSubtitle = $("<p>")
-            tempCardSubtitle.attr("class","h6 h6-responsive card-subtitle mb-2 text-muted")
+            tempCardSubtitle.attr("class","h6 h6-responsive card-subtitle mb-2")
             tempCardSubtitle.text("Rating: " + tempGiphyArray[i].imgRating.toUpperCase())
             var tempCardBody = $("<div>")
             tempCardBody.attr("class", "class-body")
@@ -150,6 +156,7 @@ $("#createNewButton").on("click", function(event){
 $(document).on("click",".giphySearchButton", function(){
     if($(this).attr("Value") === that.giphyApplication.giphyAPISettings.lastQuery){
         that.giphyApplication.giphyAPISettings.offset = that.giphyApplication.giphyAPISettings.offset + that.giphyApplication.giphyAPISettings.limit
+        $(".giphyCard").attr("class", "card giphyCard")
     } else {
         $("#giphyResults").empty()
         that.giphyApplication.giphyAPISettings.offset = 0

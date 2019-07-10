@@ -8,22 +8,7 @@ html, body {
     background-color: black
 }
 
-@media screen and (min-width: 576px) { 
-    .giphyIMG {
-        max-height: 40vw;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .giphyIMG {
-        max-height: 20vw;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .giphyIMG {
-    max-height: 20vw;
-    }
+@media screen and (min-width: 1200px){
     .container {
         max-width: 1170px
     }
@@ -34,9 +19,6 @@ html, body {
     }
   }
   @media screen and (min-width: 1600px) {
-    .giphyIMG {
-      max-height: 15vw;
-      }
     .container {
       max-width: 1470px;
     }
@@ -48,18 +30,18 @@ html, body {
   }
 
   @media screen and (min-width: 2048px) {
-    .giphyIMG {
-      max-height: 10vw;
-      }
     .container {
       max-width: 1870px;
     }
   }
 
+  @media screen and (min-width: 2560px) {
+    .container {
+      max-width: 2370px;
+    }
+  }
+
   @media screen and (min-width: 3840px) {
-    .giphyIMG {
-      max-height: 5vw;
-      }
     .container {
       max-width: 3670px;
     }
