@@ -78,19 +78,21 @@ var giphyApplication = {
             })
         }
 
-        // this code block takes the tempGiphyArray from above and sorts the data based on the Aspect Ratio's.
+        // this code block takes the tempGiphyArray from above and sorts the data based on the imgHeight object.
         // Depending on the current offset value, stored in the giphyAPISettings we determine if the current offset is odd or even.
-        // Even numbers sort, Aspect Ratio's Highest to Lowest
-        // Odd numbers sort, Aspect Ratios Lowest to Highest
-        // This ensures that when appending Gifs from the same button we sort the new gifs by Aspect ratio to try and keep like sized images together.
+        // Even numbers sort, heights from Lowest to Highest
+        // Odd numbers sort, heights from Highest to Lowest
+        // This ensures that when appending Gifs from the same button we sort the new gifs by height.  This is a best effort attempt to put tall
+        // images and shorter images together so when the page resorts the cards during a responsive action they can try to maintain some sort of
+        // order.
         // This is 100% a best effort function to make things look a bit cleaner
         // Note: offset is determined by the giphySearchButton if the same giphy button is clicked then we increment the offset in the click event.
         // this block of code looks at that offset and determines if it is an even or odd number.
         tempGiphyArray = tempGiphyArray.sort(function(a,b){
             if(((that.giphyApplication.giphyAPISettings.offset / that.giphyApplication.giphyAPISettings.limit) % 2) === 0){
-                return b.imgAspect - a.imgAspect
+                return a.imgHeight - b.imgHeight
             } else {
-                return a.imgAspect - b.imgAspect
+                return b.imgHeight - a.imgHeight
             }
             
         })
@@ -107,10 +109,6 @@ var giphyApplication = {
             }
             var tempCardHeader = $("<div>")
             tempCardHeader.attr("class", "card-header")
-            // Since the title varies in length it causes the cards to be very different sizes.
-            // var tempCardTitle = $("<h5>")
-            // tempCardTitle.attr("class","card-title")
-            // tempCardTitle.text(tempGiphyArray[i].imgTitle)
             var tempCardSubtitle = $("<p>")
             tempCardSubtitle.attr("class","h6 h6-responsive card-subtitle mb-2")
             tempCardSubtitle.text("Rating: " + tempGiphyArray[i].imgRating.toUpperCase())
@@ -153,6 +151,9 @@ $("#createNewButton").on("click", function(event){
     }
 })
 
+// This is the onclick function for the Search Giphy Buttons, if the button clicked is the same as the last button clicked then we will 
+// append the giphys to the current results adding a green color to the cards to clearly call out the new ones.  This also clears the green color
+// of existing cards for new ones to use it. 
 $(document).on("click",".giphySearchButton", function(){
     if($(this).attr("Value") === that.giphyApplication.giphyAPISettings.lastQuery){
         that.giphyApplication.giphyAPISettings.offset = that.giphyApplication.giphyAPISettings.offset + that.giphyApplication.giphyAPISettings.limit
@@ -165,8 +166,9 @@ $(document).on("click",".giphySearchButton", function(){
     that.giphyApplication.searchGiphy(giphyURL);
 })
 
+
+// on Click function is used to animate the image if stopped or stop it if animated.
 $(document).on("click",".giphyIMG", function(){
-    console.log("help")
     if($(this).attr("img-is-still") === "true"){
         $(this).attr("src",$(this).attr("img-animate"))
         $(this).attr("img-is-still","false")
